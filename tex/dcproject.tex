@@ -1,0 +1,76 @@
+\input{premath.tex}
+%quotes
+\newcommand{\citeauthorandyear}[2][]{
+   \citeauthor{#2} (\citeyear[#1]{#2})
+}
+\newcommand{\argmin}{\mathrm{argmin}}
+
+\addbibresource{dcproject.bib} 
+\begin{document}
+\pagestyle{fancy}	
+
+\section{Introduction}
+\input{introduction.tex}
+\clearpage
+\section{Preliminaries}
+\input{preliminaries.tex}
+\clearpage
+\section{Duality and Optimality}
+\input{dualityAndOptimality.tex}
+\clearpage
+\appendix
+	
+\clearpage
+\printbibliography
+\clearpage
+\section{authors}
+Pham dih tao\\
+El Bernoussi\\
+JB Hiriart-Urruty\\
+R. Ellaia\\
+JF Tolland (1979 important paper)
+
+\begin{comment}
+
+\clearpage
+It could be argued that convex optimization is, to once again use
+Boyd's terminology, a technology, and while it is a very useful and
+beautiful tool many real life problems are indeed non convex which
+prove to be very resistant to traditional techniques. In those cases
+there are different approaches :
+\begin{itemize}
+	\item Convexification where we approximate the problem
+		by a convex one and control the erro
+	\item Brute force AI type optimization where we find
+		heuristics informed by "real-life" knowledge
+		of the problem to find solutions which are
+		useful and seem quite correct but with no
+		optimality guarantee whatsoever
+	\item Carefully extend the tools from convex analysis to some
+		well defined cases of where non-convexity arises.
+\end{itemize}
+In this paper I discuss the third case in the specific context of the difference 
+of two convex functions. I assume knowledge of the basics of convex analysis such
+as Fenchel duality, lower-semicontinuityo, sub-differentials, epigraphs and relative
+interiors. I hope however that the treatment will illuminate and motivate some
+of those motivations.  I will start by defining some notation which will be
+used throughout the text.  \\The standard DC  Program is the following:
+\begin{equation}
+	P \qquad \lambda :=	\inf\{g(x) - h(x) \, | \, x\in \mathbb{R}^n\}
+	\qquad
+	g,h \in \Gamma_0
+\end{equation}
+At first read this program might seem quite arbitrary and simple. Of all the
+ways to start exploring the non-convex realm why choose this one. It turns out
+that there are three very good reasons to explore such a program. First and
+foremost it is actually a very natural generalization and step outside of
+convexity for reasons I will explore later. Moreover there are many real-life
+problems which can be very easily modelled by such programs and finally a
+powerful algorithm has been developped for DC programs (DCA algorithm) which
+although it doesn't guarantee global optimality \emph{does} often converge to
+global solutions and does so very robustly and efficiently. Those three factors
+suggest the relevance of investigating those programs.  
+\end{comment}
+
+
+\end{document}

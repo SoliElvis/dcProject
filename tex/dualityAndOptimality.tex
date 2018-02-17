@@ -1,0 +1,347 @@
+\subsection{Toland-Singer duality and the DC space}
+Let us recall the definition of a DC program and its associated notation.
+\begin{equation*}
+	\lambda := \min_{x\in\mathbb E}\{ g(x)-h(x)\}
+	\qquad g,h\in\Gamma_0
+\end{equation*}
+Let $f:=g-h$ be the objective function of the above. We write 
+$\mathcal{DC}$ for the set of all such objective functions and 
+$\mathcal{DC}_f$ when they are finite. \underline{TODO: DCf closed under}\\
+
+With the DC program defined the first important result to establish is duality.
+It turns out there is a very natural dual to P that is due to Toland and Singer.
+Letting our primal problem as defined previously:
+\begin{alignat*}{4}
+	&P \qquad \lambda &&:=\inf_{x\in\mathbb E} \{g(x) - h(x)\} \qquad
+	&&\mathcal{P} := \argmin_{x\in\mathbb E}\{g(x)-h(x)\}
+	\qquad&& g,h \in \Gamma_0
+	\intertext{We define the dual as follows:}
+	&D \qquad \lambda^* &&:=\inf_{y\in\mathbb E} \{h^*(x) - g^*(x)\} \qquad
+	&&\mathcal{D} := \argmin_{y\in\mathbb E}\{h^*(y)-g^*(y)\}
+	\qquad&& g,h \in \Gamma_0
+\end{alignat*}
+Letting once again $f:=g-h$ we write $f^\dagger$ for $h^*-g^*$ and refer
+to that function as the DC-dual of $f$. Note that in order to have
+a solution to the program (minimizer where the objective value is not $\infty$)
+we clearly need $x \in \ddom g$, as even if we have the pathological case
+that both $x\not\in\ddom g$ and $x\not\in\ddom h$ then $f(x)= \infty
+-\infty = + \infty $ under the inf-addition convention. \emph{Hence we assume
+$x\in\ddom g$ unless otherwise specified.} We know present the first and
+probably most important result on DC programming due to Toland-Singer which
+establishes how a DC program is related to its DC-dual. The proof we present is
+from Hoheisel's notes on convex analysis.  \autocite{notes}.
+\clearpage
+\begin{theorem}
+	a)Let $\lambda$ and its dual be defined as above, we have that
+	$\lambda=\lambda^*$\\
+	b)Moreover we have that given an $\bar x\in \mathcal P$ every $y\in
+	\partial h (\bar x)$ is in $\mathcal D$.
+\end{theorem}
+\begin{proof}
+	a) Since $h\in \Gamma_0$ we directly have that h is equal to its
+	biconjugate hence
+\begin{align*}
+	\inf_x\{g(x) - h(x)\}
+		&= \inf_x\{g(x) - h^{**}(x)\}\\
+		&= \inf_x\{g(x) - (h^*)^*(x)\}\\
+		&= \inf_x\big\{g(x) - \sup_y\{ \langle x,y \rangle - h^*(y)\}\big\}
+\end{align*}
+Now let us note that 
+\begin{equation}
+	\inf_x\big\{g(x) - \{ \langle x,y \rangle - h^*(y)\}\big\} < +\infty\
+	\iff \ y \in \ddom h^*
+\end{equation}
+
+\begin{align*}
+		\inf_x\{g(x) - h(x)\}	&= \inf_x\big\{g(x) + \inf_y\{
+			h^*(y) - \langle x,y \rangle \} \big\}\\
+		&= \inf_x \inf_y \big\{ h^*(y) - \langle x,y \rangle +
+		g(x)\big\}\\
+		&= \inf_y \big\{ h^*(y) - \sup_x\{\langle x,y\rangle
+			-g(x)\}\big\}\\
+		&= \inf_y \{h^*(y) - g^*(y)\}
+\end{align*}
+
+\noindent Hence the finiteness of $\lambda$ boils down to 
+\begin{equation}
+	\ddom  g \subset \ddom h \qquad\text{and}\qquad \ddom h^* \subset \ddom
+	g^* \label{finiteassumption}
+\end{equation}
+We thus assume \ref{finiteassumption} holds throughout the paper. Let us continue
+the computations, now anchored in the finite setting :
+\noindent b) By assumption $\bar x \in \mathcal P$ hence by definition:
+\begin{equation*}
+	g(\bar x)-h(\bar x) \leq g(x) - h(x)
+\end{equation*}
+Under the assumption that $x\in\ddom g$ and the inclusions of
+\ref{finiteassumption}
+all terms are finite and we can re-arrange:
+\begin{equation*}
+	g(x)-g(\bar x) \geq h(x)-h(\bar x)
+\end{equation*}
+Note that this would still be valid in the case where either just 
+the LHS or both sides were infinite valued under the inf-addition convention;
+which is actually the main motivation behind said convention.
+Now using the assumption that some $\bar y$ is in the range of $\partial h(\bar
+x)$ and the definition of the subdifferential
+\begin{align*}
+	g(x)-g(\bar x) \geq \langle\bar y,x-\bar x\rangle  \quad
+	\Rightarrow \qquad 
+	\bar y \in\partial g(\bar x) 
+	\quad (\text{and} \ y\in  \partial  h(\bar x)\ \text{by assumption})
+\end{align*}
+Recall that whenever $\bar z\in\partial f(z)$ for some $f\in\Gamma$, lemma
+\ref{fenchelDualLemma} gives us the following equality $ f(z)+f^\dagger(\bar z) =
+\langle z,\bar z\rangle $. This leads to the following observation: the point
+$\bar y$ being in the range of the subdifferentials of both $g$ and $h$ "binds"
+the value of the DC program and its DC-Dual.
+\begin{equation*}
+	g(\bar x) + g^*(y) = h(\bar x) + h^*(\bar y) = 
+	\langle \bar x,\bar y \rangle \qquad 
+\end{equation*}
+Where the inner product is less relevant here than the fact that the value agree.
+Hence all in all we get :
+\begin{equation*}
+	g(\bar x) - h(\bar x) = h^*(\bar y) - g^*(\bar y)
+\end{equation*}
+\end{proof}
+Note that the assumption on $g\in \Gamma_0$ is unnecessarily strong and the two
+previous proofs work by replacing it  by any proper extended real valued
+function. However if we want a symmetric result, that is  $\bar y \in
+\mathcal D$ and $\bar x \in \partial g^*(\bar y)$ imply $\bar x \in \mathcal P$,
+then we do need $g$ to be l.s.c. and the proof is essentially the same as the
+one above by symmetry.
+\clearpage
+
+\subsection{Optimality Conditions}
+\underline{TODO}:Global optimality criteria with relative interiors 
+\autocite{tao2005dc}\\
+
+As mentionned previously global optimality is not within our
+reach in practical applications at this point and we usually have to resort to
+use local optimality criteria to derive algorithms eventhough they might 
+in fact converge to a global solution. I now present different theorems
+and conditions for global optimality. To make sure both $f$ and its DC-dual
+are finite valued we assume the following:
+\begin{equation}
+	\ddom g \subset \ddom h \qquad\text{and}\qquad
+	\ddom   h^* \subset \ddom g^*
+\end{equation}
+\begin{theorem}
+A point $\bar x\in \mathbb R^n$ is a solution to the primal
+problem, i.e. $\bar x\in \mathcal P$, if and only if 
+$\partial_\epsilon h(\bar x) \subset \partial_\epsilon g(\bar x)\quad \forall
+\epsilon >0$\\
+We follow the main steps outlined in Tao and Ann's paper \autocite{tao1997convex}.
+\end{theorem}
+\begin{proof}
+Assume $x\in\ddom g$ and $y\in\ddom h^*$ for finiteness.
+Let $\bar x \in \mathcal P$. Since by DC-duality
+the primal and dual optimal values agree we have that  $f(\bar x) \leq
+f^\dagger(y)$, hence : 
+\begin{alignat}{2}
+	&g(\bar x) -h(\bar x) &&\leq h^*(y)-g^*(y)\\
+	\iff \qquad &g(\bar x) + g^*(y) &&\leq h(\bar x) + h^*(y) 
+		     \label{globalCondition}
+\end{alignat}
+%
+Now let $\bar x\in \mathcal P$, from Fenchel-Young inequality we have:
+\begin{equation}
+	\inp{\bar x}{y} \leq g(\bar x)+g^*(x)\leq h(\bar x)+h^*(x) \qquad
+	\forall x\in\ddom g
+\end{equation}
+Then if $x\in\partial_\epsilon h(\bar x)$ we have from "generalized 
+Fenchel-Young" inequality (Lemma \ref{FYepsilon}) that:
+\begin{equation*}
+	h(\bar x)+ h^*(x) \leq \epsilon + \inp{x}{\bar x}
+\end{equation*}
+Then clearly if we want \eqref{globalCondition} to potentially hold we need to
+have $g(\bar x)+ g^*(x) \leq \epsilon + \inp{x}{\bar x}$
+as well. Hence $x\in \partial_\epsilon g(\bar x)$ whenever $x\in
+\partial_\epsilon h(\bar x)$ which shows the inclusion is necessary. For 
+sufficiency we argue by contraposition. Assume \eqref{globalCondition} does not
+hold. Then by Fenchel-Young there exists
+some $\epsilon>0$ such that
+\begin{equation*}
+	\inp{x}{\bar x} \leq h(\bar x)+h^*(x)< \inp{x}{\bar x} + \epsilon 
+	\leq g(\bar x) + g^*(x) \qquad \forall x\in\ddom g
+\end{equation*}
+But then once again by lemma \ref{FYepsilon} we have that
+$x\in\partial_\epsilon h(x)$ and $x\not\in\partial_\epsilon g(x)$
+\end{proof}
+\clearpage
+
+An important remark is in order, notationnally the
+usage of $\epsilon$ has a heavy connotation as we expect to let it go to zero
+or to use it to get the strongest estimate possible. However here letting it to
+zero yields the much weaker condition $\partial h(x) \subset \partial g(x)$
+The later actually yields a condition which while not sufficient is clearly
+\emph{necessary} for global optimality.The strength of the condition imposed
+with the $\epsilon-$subdifferential for all $\epsilon>0$ lies in the fact that we
+can also make $\epsilon$ as large as we'd like. This necessary and sufficient
+condition is in fact too strong and impractical as are gobal optimality
+conditions in general.  Now I recall the property from the proof DC-duality
+that
+\begin{equation}
+	\forall  \bar x \in \mathcal P \quad \partial h(\bar x)  \subset
+	\mathcal D  \subset  \ddom h^* \qquad \forall \bar y \in \mathcal D
+	\quad \partial g^*(\bar y) \subset  \mathcal P \subset \ddom g	
+\end{equation}
+This property is commonly known as \emph{transportation of global minimizers}
+as subdifferentials map  minimizers between primal and dual spaces. This
+is a very good guide for our intuition as I will prove the next couple results
+about \emph{local optimality} which are at the core of the DCA. First we
+introduce the following
+notation due to Tao and Souad \autocite[280]{tao1988duality}:
+\begin{equation}
+	\mathcal P_l := \{\bar x\in \mathbb R^n\ |\
+	\partial h(\bar x)\subset\partial g(\bar x)\} \qquad
+	\mathcal D_l := \{\bar y\in \mathbb R^n\ |\ 
+	\partial g^*(\bar y) \subset \partial h^*(\bar y)\}
+\end{equation}
+
+\begin{theorem}[Necessary condition for local optimality]
+If $\bar x$ is a local minimizer of $f:=g-h$ then $\bar x \in \mathcal P_l$
+\begin{proof}
+If $\bar x$ is a local minimizer of $f$ then by definition there
+exists a neighborhood of $\bar x$, say $N(\bar x)$ such
+that 
+%
+\begin{equation}
+	g(x)-g(\bar x) \geq h(x)-h(\bar x) \quad 
+	\forall x\in N(\bar x) \, \cap \, \ddom g
+	\label{localNec-1}
+\end{equation}
+\noindent Now for any $\bar y \in\partial h(\bar x)$ we have that 
+\begin{equation}
+	h(x)-h(\bar x) \geq \langle x-\bar x, \bar y\rangle 
+	\label{localNec-2}
+\end{equation}
+%
+Combining \eqref{localNec-1} and \eqref{localNec-2} we get
+that given some   $\bar y \in \partial h(\bar x)$:
+%
+\begin{equation}
+	g(x)-g(\bar x)\geq \langle x-\bar x,\bar y\rangle \quad \forall \ 
+	\bar x \in N(\bar x) \iff \bar y \in 
+	\partial g(\bar x)
+\end{equation}
+%
+Where the last inequality is just the definition of a subgradient combined
+with the fact that $g$ convex allows us to extend the inequality beyond the
+neighborhood to all of $\mathbb R^n$. All in all we have just proven 
+that local minimality implies the desired inclusion, hence that
+$\bar x \in \mathcal P_l$. Once again the dual statement is true by symmetry.
+\end{proof}
+\end{theorem}
+\clearpage
+
+\begin{definition}[Critical Point]
+	A point $\bar x$ is said to be a \emph{critical point of $g-h$} if
+	\[\partial g(\bar x) \, \cap \, \partial h(\bar x) \neq \emptyset \]
+\end{definition}
+We now proceed to show a sufficient condition for local optimality.
+We first present the main result and then a more elegant corollary
+to test local optimality. Both results are drawn from  Tao and An's paper
+\autocite{tao1997convex}.
+First we need a critical point and then explore the behaviour of 
+the subdifferentials of $g$ and $h$ around it.
+\begin{theorem}[Sufficient local optimality condition]
+Let $\bar x$ be a critical point of $f:=g-h$ , 
+$\, \bar y \in \partial g(\bar x) \cap \partial h(\bar x)$ and 
+$\widetilde{N}(\bar x):= N(\bar x) \cap \ddom
+\partial h$. We restrict the neighborhood to the domain of the subdifferential
+of h as this mapping allows us to exploit the dual structure of DC programs.
+We keep this notation throughout.
+Then, given the definitions above, we have that if 
+\begin{equation}
+	\forall x \in \widetilde{N}(\bar x) \quad \exists \
+	\hat y \in \partial h(x)  \quad s.t.\quad
+	f^\dagger(\hat y)\geq f^\dagger(\bar y)
+\end{equation}
+Then  $\bar x$ is a local minimizer on $N(\bar x)$
+\begin{proof}
+Once again taking the intersection of both subdifferentials
+allows us to bind the primal and dual problems. 
+\begin{equation*}
+	\bar y \in \partial g(\bar x) \cap h(\bar x) \ \Rightarrow 
+	g(\bar x)+g^*(\bar y)=\langle \bar x,\bar y\rangle = 
+	h(\bar x) + h^*(\bar y)
+\end{equation*}
+Hence  we get the equality of the primal and dual objectives
+\begin{equation}
+	g(\bar x) - h(\bar x) = h^*(\bar y) - g^*(\bar y)
+	\label{localsuf1}
+\end{equation}
+Moreover we have that $\forall x \in \widetilde{N}(\bar x)$ there is 
+$\hat y\in \partial h(x)$ which majorizes the dual at $\bar y$, i.e.
+\begin{equation}
+	h^*(\hat y) - g^*(\hat y) \geq h^*(\bar y) - g^*(\bar y) \qquad
+	\text{In other words} \quad f^\dagger (\hat y) \geq f^\dagger(\bar y)
+	\label{localsuf2}
+\end{equation}
+To complete the proof we need one last inequality which is direct
+from the lemma \ref{fenchelDualLemma} (as $\hat y \in \partial h(x)$)
+and the definition of the Fenchel dual of a function:
+\begin{equation}
+	h(x)+h^*(\hat y) = \langle x,\hat y\rangle \leq g(x)+g^*(\hat y)
+	\ \Rightarrow \ g(x)-h(x)\geq h^*(\hat y) -g^*(\hat y)
+	\label{localsuf3}
+\end{equation}
+Combining \eqref{localsuf1}, \eqref{localsuf2} and \eqref{localsuf3}
+we get the desired inequality:
+\begin{equation*}
+	g(x) - h(x) \geq g(\bar x)-h(\bar x) \qquad \forall x \in 
+	N(\bar x) 
+\end{equation*}
+\end{proof}
+\end{theorem}
+\clearpage
+We can now leverage this rather technical result to get the following more
+elegant corollary which follows quite nicely. The idea however is quite in the
+same vein. For a critical point $\bar x$ we need a neighborhood around it that
+is contained in the subdifferential of $g$ at $\bar x$ and such that every point
+of the neighborhood is a fixed point under the subdifferential of $h$.
+\begin{corollary}[sufficient local optimality condition]
+	Let $\bar x$ be a critical point of ($\ \mathcal{DC}\ni)\ f:=g-h$.
+	If we can find a neighborhood $\widetilde{N}(\bar x)$ such that
+\begin{equation}
+	\forall x \in \widetilde{N}(\bar x) \qquad \partial g(\bar x) 
+	 \cap \partial h(x) \neq \emptyset
+\end{equation}
+	then $\bar x$ is a local minimizer of f
+\begin{proof}
+	Let $x\in \widetilde{N}(\bar x)$ and $y\in  \partial h(x) \ \cap
+	\partial g(\bar x) $\\[1ex] First we consider $\bar y \in \partial
+	h(\bar x) \cap \partial g(\bar x)$ and as before it binds dual and
+	primal
+	%
+\begin{align*}
+	g(\bar x)+g^*(\bar y) &= \langle\bar x,\bar y\rangle 
+	= h(\bar x)+h^*(\bar y) \ \Rightarrow f(\bar x)=f^\dagger(\bar y)
+	%
+	\intertext{Now we have two inclusions which give us
+	two inequalities, first $y \in \partial h(x)$ yields}
+	%
+	h(x)+h^*(y)&=\langle x,y\rangle \leq g(x)+g^*(y) \
+			\Rightarrow \ f(x) \geq f^\dagger(y)
+	%		
+	\intertext{And $y\in \partial g(\bar x)$ hence}
+	%
+	g(\bar x)+g^*(y)&=\langle \bar x,y\rangle 
+		\leq h(\bar x)+h^*(y) \ \Rightarrow \ f^\dagger(y) \geq f(\bar x)
+\end{align*}
+Hence combining the three relationships above  we get 
+\begin{equation*}
+	f(x) \geq f(\bar x) \quad  \forall x\in \widetilde{N}(\bar x) 
+	\qquad(:=N(\bar x) \cap \partial h(x))
+\end{equation*}
+\end{proof}	
+\end{corollary}
+For both the theorem and its corollary the process of restricting the neighborhood
+to the domain of the subdifferential of $h$ allows us to get satisfying 
+inequalities in the dual space which can be linked elegantly to the primal. 
+The corollary requires stronger assumptions as the neighborhood is not only
+restrained to $\ddom \partial h(x)$ but also to the subdifferential of $g$ at
+the critical point.
+\clearpage

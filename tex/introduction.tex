@@ -1,0 +1,59 @@
+
+\subsection{TODO}
+\begin{enumerate}
+	\item Analysis of DCA, rate, stability, optimality, local vs global
+	\item specific cases (Generalized Fermat-Weber)
+	\item Using relative interior notions define other optimality
+		criteria, "add structure for finite dimensional case
+	\item Analysis of the sets DC and DCf, starting with list
+		of elementary options under which they are closed 
+		and after more subtle limiting arguments, e.g. smooth
+		functions are DC
+	\item Explorations: Hilbert spaces, proximal methods, accelerated 
+		descent methods etc.
+\end{enumerate}
+\begin{comment}
+	The field loosely defined as continuous optimization has had different
+	stages in the last century that might appear disconnected to the
+	uninitiated. In the first half properties of convex functions and sets
+	are studied by Minkowski and Farkas, not obscuse mathematicians by any
+	measure but optimization stays anchored to two main pillars, the
+	combinatorial case which is studied in tandem with computer science
+	which is at its inception and the linear case which is now a well
+	established "technology" to use Boyd's terms. The rest of continuous
+	optimization kept revolving around ancient ideas because of the
+	constraints imposed by differentiability or smoothness, and even more
+	because numerical simulations are still at their prehistorical state.
+	While combinatorial optimization has some nice connections with graph
+	theory which is also emerging and theoretical computer science, the
+	optimization of continuous functions seems at the time like a mere
+	mixture of numerical techniques, quite un-aesthetic often and doesn't
+	seem to connect to other theoretical results.  The modern theory arises
+	out of the works of Rockafellar and Fenchel amongst others who shifted
+	the emphasis towards \emph{geometrical} concerns, explored duality that
+	is the offspring in some regard's of Von Neumann's minimax theorem and
+	constructed tools to approach analysis in non smooth contexts with
+	subdifferentiability and in general established the grounds for
+	continuous optimization to be a mathematical field in its own right.\\
+
+It is of notable interest that Rockafellar's first book is called "Convex
+Analysis" while his magnum opus published decades later adopts the title
+"Variational Analysis". Now an increasing number of monographs get published
+with tags such \emph{non-linear optimization} or \emph{variational problems}.
+It testifies to the fact that non-linear optimization is starting to grow out
+of convex analysis per-se.  Convex analysis initially provided the rigorous
+foundation needed to approach problems that didn't present some of the
+structures on which mathematical research had been focusing so far, linearity,
+differentiability and integrability being the three major ones. It allowed to
+do some nice mathematics even when both linearity and differentiability
+vanished with an elegant geometrical framework. This approach can be summarized
+by an important and quite simple result: every convex function can be
+identified with its epigraph.\\
+\end{comment}
+In this paper we investigate a type of non-convex program which allows us to
+leverage the tools from convex analysis in an elegant manner and which has many
+direct concrete applications. We are concerned with the minimization of the
+difference of convex functions and we use the following notation throughout:
+\begin{equation} \lambda := \min_{x\in\mathbb E}\{ g(x)-h(x)\}\end{equation}
+We usually assume that both $g$ and $h$ are convex, proper and lower 
+continuous unless otherwise specified so.
