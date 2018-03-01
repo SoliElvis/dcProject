@@ -1,4 +1,4 @@
-\subsection{Toland-Singer duality and the DC space}
+\subsection{Toland-Singer duality}
 Let us recall the definition of a DC program and its associated notation.
 \begin{equation*}
 	\lambda := \min_{x\in\mathbb E}\{ g(x)-h(x)\}
@@ -127,12 +127,12 @@ are finite valued we assume the following:
 	\ddom g \subset \ddom h \qquad\text{and}\qquad
 	\ddom   h^* \subset \ddom g^*
 \end{equation}
-\begin{theorem}
+
+\begin{theorem}[Characterization of global minima]
 A point $\bar x\in \mathbb R^n$ is a solution to the primal
 problem, i.e. $\bar x\in \mathcal P$, if and only if 
 $\partial_\epsilon h(\bar x) \subset \partial_\epsilon g(\bar x)\quad \forall
-\epsilon >0$\\
-We follow the main steps outlined in Tao and Ann's paper \autocite{tao1997convex}.
+\epsilon >0$
 \end{theorem}
 \begin{proof}
 Assume $x\in\ddom g$ and $y\in\ddom h^*$ for finiteness.
@@ -208,13 +208,23 @@ exists a neighborhood of $\bar x$, say $N(\bar x)$ such
 that 
 %
 \begin{equation}
-	g(x)-g(\bar x) \geq h(x)-h(\bar x) \quad 
-	\forall x\in N(\bar x) \, \cap \, \ddom g
+	g(x)- h(x) \geq g(\bar x) - h(\bar x) \quad 
+	\forall x\in N(\bar x)  
+\end{equation}
+\noindent Since by assumption $g$ is proper we can
+take the intersection of the neighborhood with $\ddom g$ without yielding an
+empty set. Taking this intersection forces $g$ and $h$ to be finite valued
+\footnote{Recall that we always assume $ \ddom g \subset \ddom h$}
+so that we can rearrange the former inequatlity:
+\begin{equation}
+	g(x)- g(\bar x) \geq h( x) - h(\bar x) \quad 
+	\forall x\in N(\bar x) \cap \ddom g  \qquad 
 	\label{localNec-1}
 \end{equation}
 \noindent Now for any $\bar y \in\partial h(\bar x)$ we have that 
 \begin{equation}
 	h(x)-h(\bar x) \geq \langle x-\bar x, \bar y\rangle 
+	\qquad x\in\mathbb R^n
 	\label{localNec-2}
 \end{equation}
 %
@@ -223,15 +233,21 @@ that given some   $\bar y \in \partial h(\bar x)$:
 %
 \begin{equation}
 	g(x)-g(\bar x)\geq \langle x-\bar x,\bar y\rangle \quad \forall \ 
-	\bar x \in N(\bar x) \iff \bar y \in 
-	\partial g(\bar x)
+	\bar x \in N(\bar x)\cap \ddom g 
+	\label{localNec-3}
 \end{equation}
-%
-Where the last inequality is just the definition of a subgradient combined
-with the fact that $g$ convex allows us to extend the inequality beyond the
-neighborhood to all of $\mathbb R^n$. All in all we have just proven 
-that local minimality implies the desired inclusion, hence that
-$\bar x \in \mathcal P_l$. Once again the dual statement is true by symmetry.
+Note that the set $N(\bar x) \cap \ddom g$ might not be open for an abritrary
+neighborhood however we can clearly make $N(\bar x)$ small enough so that its
+intersection with $\ddom g$ is open. Finally proving the inequality 
+\eqref{localNec-3} on some neighborhood for a convex function actually
+implies it holds for all of $\mathbb R^n$ (Lemma) hence :
+\begin{gather*}
+	g(x)-g(\bar x)\geq \langle x-\bar x,\bar y\rangle \quad \forall \ 
+	\bar x \in \mathbb R^n\\
+	\therefore \  \bar y \in\partial g(\bar x)
+\end{gather*}
+All in all we have just proven that local minimality implies the desired
+inclusion, i.e. that  $\bar x \in \mathcal P_l$. 
 \end{proof}
 \end{theorem}
 \clearpage
@@ -245,21 +261,23 @@ We first present the main result and then a more elegant corollary
 to test local optimality. Both results are drawn from  Tao and An's paper
 \autocite{tao1997convex}.
 First we need a critical point and then explore the behaviour of 
-the subdifferentials of $g$ and $h$ around it.
+the subdifferentials of $g$ and $h$ around it. In the following proof we
+restrict the neighborhood to the domain of the subdifferential of $h$ as this
+mapping allows us to exploit the dual structure of DC programs.
+
+%
 \begin{theorem}[Sufficient local optimality condition]
+%
 Let $\bar x$ be a critical point of $f:=g-h$ , 
 $\, \bar y \in \partial g(\bar x) \cap \partial h(\bar x)$ and 
 $\widetilde{N}(\bar x):= N(\bar x) \cap \ddom
-\partial h$. We restrict the neighborhood to the domain of the subdifferential
-of h as this mapping allows us to exploit the dual structure of DC programs.
-We keep this notation throughout.
-Then, given the definitions above, we have that if 
+\partial h$. Then, given the definitions above, we have that if 
 \begin{equation}
 	\forall x \in \widetilde{N}(\bar x) \quad \exists \
 	\hat y \in \partial h(x)  \quad s.t.\quad
 	f^\dagger(\hat y)\geq f^\dagger(\bar y)
 \end{equation}
-Then  $\bar x$ is a local minimizer on $N(\bar x)$
+Then  $\bar x$ is a local minimizer on $\widetilde N(\bar x)$
 \begin{proof}
 Once again taking the intersection of both subdifferentials
 allows us to bind the primal and dual problems. 
@@ -281,7 +299,7 @@ $\hat y\in \partial h(x)$ which majorizes the dual at $\bar y$, i.e.
 	\label{localsuf2}
 \end{equation}
 To complete the proof we need one last inequality which is direct
-from the lemma \ref{fenchelDualLemma} (as $\hat y \in \partial h(x)$)
+from the Lemma \ref{fenchelDualLemma} (as $\hat y \in \partial h(x)$)
 and the definition of the Fenchel dual of a function:
 \begin{equation}
 	h(x)+h^*(\hat y) = \langle x,\hat y\rangle \leq g(x)+g^*(\hat y)
@@ -292,7 +310,7 @@ Combining \eqref{localsuf1}, \eqref{localsuf2} and \eqref{localsuf3}
 we get the desired inequality:
 \begin{equation*}
 	g(x) - h(x) \geq g(\bar x)-h(\bar x) \qquad \forall x \in 
-	N(\bar x) 
+	\widetilde N(\bar x) 
 \end{equation*}
 \end{proof}
 \end{theorem}
@@ -303,8 +321,9 @@ same vein. For a critical point $\bar x$ we need a neighborhood around it that
 is contained in the subdifferential of $g$ at $\bar x$ and such that every point
 of the neighborhood is a fixed point under the subdifferential of $h$.
 \begin{corollary}[sufficient local optimality condition]
-	Let $\bar x$ be a critical point of ($\ \mathcal{DC}\ni)\ f:=g-h$.
-	If we can find a neighborhood $\widetilde{N}(\bar x)$ such that
+	Let $\bar x$ be a critical point of ($\ \mathcal{DC}\ni)\ f:=g-h$.  If
+	we can find a neighborhood $\widetilde{N}(\bar x):=N(\bar
+	x) \cap \ddom\partial h(x)$ such that
 \begin{equation}
 	\forall x \in \widetilde{N}(\bar x) \qquad \partial g(\bar x) 
 	 \cap \partial h(x) \neq \emptyset
@@ -334,7 +353,7 @@ of the neighborhood is a fixed point under the subdifferential of $h$.
 Hence combining the three relationships above  we get 
 \begin{equation*}
 	f(x) \geq f(\bar x) \quad  \forall x\in \widetilde{N}(\bar x) 
-	\qquad(:=N(\bar x) \cap \partial h(x))
+	\qquad(:=N(\bar x) \cap \ddom\partial h(x))
 \end{equation*}
 \end{proof}	
 \end{corollary}

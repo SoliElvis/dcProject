@@ -1,0 +1,80 @@
+\newcommand{\xs}{x^\nu}
+\newcommand{\xss}{x^{\nu+1}}
+\newcommand{\ys}{y^{\nu}}
+\newcommand{\yss}{y^{\nu+1}}
+\subsection{Intuition and Derivation of simplified DCA}
+We now have the technical results necessary to discuss the
+DC algorithm for general D.C. programs. Its aim is to 
+generate sequences $x^\nu$ and $y^\nu$ which converge to a local
+minimum of the functions $f:=g-h$ and $f^\dagger:= h^*-g^*$
+respectively where $g,h\in\Gamma_0$\\ We define two sub programs:
+\begin{align} 
+ \widetilde S(x) \qquad &\inf\{h^*(y)-g^*(y) \ : \ y\in\partial h(x)\}\\ 
+ \widetilde T(y) \qquad &\inf\{g(x)-h(x) \ : \ x\in\partial g^*(y)\}
+ \label{fulldca}
+\end{align}
+Let $\widetilde {\mathcal S}(x)$ and $\widetilde{\mathcal T}(y)$ denote the
+solution sets of $\widetilde S(x)$ and $\widetilde T(y)$ respectively. Then given
+a point $x^o\in\ddom g$
+the sequences are constructed as follows:
+\begin{equation}
+  \ys\in\widetilde{\mathcal S}(\xs); \quad \xss\in\widetilde{\mathcal T}(\ys)
+\end{equation}
+The main idea relies on a decomposition approach to the problem;
+we use DC duality to solve the initial program and its dual
+on subsets of the initial space using the subdifferential
+operators to move between primal and dual. Eventhough the 
+the subprograms are simpler than the initial one they are 
+still non-convex. Their main function is to give 
+insights as to how to construct sequences with the desired
+behaviour. \\
+
+Consider the program $T(\ys)$ where $\ys$ is the solution
+to some $\widetilde S(x^o)$. We have that $\ys\in\partial h(\xs)$ hence:
+\begin{equation}
+    h(\xs)\leq h(\xss) + \inp{y}{x-\xss} 
+\end{equation}
+This suggests a simplfication of the program $\widetilde T(\ys)$ by replacing
+$h(\xs)$ by its affine minorization through $\ys$ whereby we get the
+following program, which is convex: 
+\begin{equation}
+    \inf\{g(x) - [h(\xs)+\inp{\ys}{x-\xs}] \}
+    \label{simDCApp}
+\end{equation}
+Dually we can also replace $g^*$ in the objective function
+of $\widetilde S(\xss)$ by its affine minorant since we have that
+$\xss \in \partial g^*(\ys)$:
+\begin{equation}
+    \inf\{h^*(y)-[g^*(\ys) + \inp{\xss}{y-\ys}]\}
+    \label{simDCAdd}
+\end{equation}
+Note that we only needed the inclusion $\xss\in\partial g^*(\ys)$
+and $\ys\in\partial h(\xs)$ to find a simplified versions of
+the two initial programs.\\
+\begin{comment}
+Note that the simplified forms \eqref{simDCApp} and \eqref{simDCAdd}
+are actually equivalent to the programs from \eqref{fulldca} if the functions 
+$g^*$ and $h$ are actually essentially differentiable \autocite{tao2005dc}.
+\end{comment}
+\newpage
+%
+The programs \eqref{simDCApp} and \eqref{simDCAdd} can actually be simplified
+further as the objective functions contain constants.
+%
+\begin{equation}
+   \argmin\{h^*(y)-[g^*(\ys) + \inp{\xss}{y-\ys}]\}=
+   \argmin\{h^*(y) -\inp{\xss}{y}\}
+\end{equation}
+Now note that 
+\begin{equation}
+  \yss \in \argmin\{h^*(y) -\inp{\xss}{y}\} \iff \yss \in \partial h(\xss)
+\end{equation}
+Similarly
+\begin{equation}
+    \argmin\{g(x) - [h(\xs)+\inp{\ys}{x-\xs}] \}=
+   \argmin\{g(x) -\inp{x}{\ys}\}
+\end{equation}
+\begin{equation}
+  \xss \in   \argmin\{g(x) -\inp{x}{\ys}\} \iff \xss \in \partial g^*\ys)
+\end{equation}
+Hence all in all the simplified DCA 

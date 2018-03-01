@@ -1,9 +1,8 @@
 We define a couple of key concepts. 
 First for exposition we use the following function notation throughout:
 \begin{equation*}
-	f: \mathbb E \longrightarrow \overline{\mathbb R} 
+	f: \mathbb R^n \longrightarrow \overline{\mathbb R} 
 \end{equation*}
-Here $\mathbb E$ is some measurable subset of $\mathbb R$\\
 We also use Rockafellar's notation \autocite{rockafellar2009variational} for 
 sequences of real variables : $x^{\nu}$ where $\nu$ is always understood 
 to be a natural number used as an index and not an exponent.
@@ -15,29 +14,30 @@ to emphasize the difference with the naive set theory definition. However
 we will always refer to the domain in the first sense and will dispense from
 using the adjective "effective". Formally:
 \begin{equation*}
-	\ddom f := \{x\in\mathbb E \ |\ f(x)< \infty\}
+	\ddom f := \{x\in\mathbb R^n \ |\ f(x)< \infty\}
 \end{equation*}
 \end{definition}
 %
 \begin{definition}
 	A convex function is said to be \emph{proper} if it has non empty domain
-	and $f(x)>-\infty$ for all $x\in\mathbb E$. The set of all such functions
-	is denoted $\Gamma$.
+	and $f(x)>-\infty$ for all $x\in\mathbb R^n$. The set of all such
+	functions is denoted $\Gamma$.
 \end{definition}
 
 \noindent In optimisation smoothness assumptions often break-down. We thus need
-a different machinery than the one obtained from classical calculus. We introduce
-some of those notions now. 
+a different machinery than the one obtained from classical calculus. We
+introduce some of those notions now. 
 
 \begin{definition}
 We define present the definition of the lower limit of a function $f$ at some
-$\bar x\in\mathbb E$ as it is written by Rockafellar and Wets
+$\bar x\in\mathbb R^n$ as it is written by Rockafellar and Wets
 \autocite{rockafellar2009variational}
 \begin{align*}
 	\liminf_{x\rightarrow \bar x} f(x) :&= \lim_{\delta \searrow 0}
 	\left[\inf_{x\in B(\bar x,\delta)}f(x)\right]\\[2ex]
 		&=\sup_{\delta >0}\left[\inf_{x\in B(\bar x,\delta)}f(x)\right]
-		\quad = \sup_{V\in \mathcal{N}(\bar x)}\left[\inf_{x\in V}f(x)\right]
+		\quad = \sup_{V\in \mathcal{N}(\bar x)}\left[\inf_{x\in
+		V}f(x)\right]
 \end{align*}
 \end{definition}
 \begin{prop}
@@ -47,8 +47,8 @@ The above definition of lower limit of a function is equivalent to
 	\liminf_{x\rightarrow\bar x}f(x) = \min\{\alpha\in\overline{\mathbb R}\ 
 		| \ \exists x^{\nu} \rightarrow \bar x \ \text{with}
 	\ f(x^{\nu})\rightarrow \alpha\} 
-\end{equation*}
-We use min on the rhs as the definition presumes that the value is actually attained.
+\end{equation*} We use min on the rhs as the definition presumes that the value
+is actually attained.
 \end{prop}
 %
 \begin{definition}
@@ -59,34 +59,33 @@ A function $f$ is said to be \emph{lower semicontinuous} (lsc) at $\bar x$  if
 	\qquad \text{or equivalently} \qquad 
 	\liminf_{x\rightarrow\bar x}f(x)=f(\bar x)
 \end{equation*}
-Where the equivalence comes from the fact that the reverse inequality always holds
-by definition of $\liminf$
+Where the equivalence comes from the fact that the reverse inequality always
+holds by definition of $\liminf$
 \end{definition}
 %
 \clearpage
 \begin{definition}
-Recalling the definition of proper convex functions; when $f\in\Gamma$ and is lsc
-we say that $f\in \Gamma_0$ which is set the of all such functions.
-\end{definition}
-Those sets being of major importance we restate, more formally:
+Recalling the definition of proper convex functions; when $f\in\Gamma$ and is
+lsc we say that $f\in \Gamma_0$ which is set the of all such functions.
+\end{definition} Those sets being of major importance we restate, more
+formally:
 \begin{equation*}
-	\Gamma:= \{f:\mathbb E \longrightarrow \mathbb \overline{\mathbb R} \
+	\Gamma:= \{f:\mathbb R^n \longrightarrow \mathbb \overline{\mathbb R} \
 	| \ f \ \text{proper and convex}\}
 	\qquad \Gamma_0 := 
-	\{f:\mathbb E \longrightarrow \mathbb \overline{\mathbb R} \
+	\{f:\mathbb R^n \longrightarrow \mathbb \overline{\mathbb R} \
 	| \ f \ \text{proper , lsc and convex}\}
 \end{equation*}
 %
 \begin{definition}
-\autocite{notes}\\
-	Let $f: \mathbb E \longrightarrow \overline{\mathbb R}$ be convex and 
-	$x\in\mathbb E$. Then $g\in\mathbb E$ is called a subgradient of $f$ at
-	$\bar x$ if 
+	Let $f: \mathbb R^n \longrightarrow \overline{\mathbb R}$ be convex and
+	$x\in\mathbb R^n$. Then $g\in\mathbb R^n$ is called a subgradient of
+	$f$ at $\bar x$ if 
 	\begin{equation*}
 		f(x) \geq f(\bar x) +\langle g,x-\bar x\rangle \quad 
-		\forall x\in\mathbb E 
+		\forall x\in\mathbb R^n 
 	\end{equation*}
-More over the set of all such subgradients of $f$ at $\bar x$ is callled the subdifferential
+Moreover the set of all such subgradients of $f$ at $\bar x$ is callled the subdifferential
 of $f$ at $\bar x$ and we denote it as $\partial f(\bar x)$.
 \end{definition}
 %
@@ -95,7 +94,7 @@ The Fenchel conjugate of a function $f$, in the convex analysis setting often
 just referred to as the conjugate of a function, is an extended real valued
 functione defined as:
 \begin{equation*}
-	f^*(y) := \sup_{x\in\mathbb E}\{\langle x,y\rangle - f(x)\}
+	f^*(y) := \sup_{x\in\mathbb R^n}\{\langle x,y\rangle - f(x)\}
 \end{equation*}
 The mapping $f\mapsto f^*$ is called the Legendre-Fenchel transform.
 It is sometimes just refered to as the Legendre transform in physics which 
@@ -104,7 +103,7 @@ and variational case.
 \end{definition}
 \noindent By definition we always have that
 \begin{equation*} f(x)+f^*(y)\geq\langle x,y\rangle \quad \forall\ x,y\in 
-\mathbb E\end{equation*}
+\mathbb R^n\end{equation*}
 This relationship is known as the \emph{Fenchel-Young Inequality}
 
 \begin{lemma}\label{fenchelDualLemma}
@@ -152,13 +151,11 @@ subdifferentials. We present it as a lemma here:
 \begin{proof}
 	\begin{align*}
 		y\in\partial_\epsilon f(x^o) &\iff 
-		f(x^o) \leq f(x) + \langle x-x^o,y\rangle + \epsilon
-		\qquad \forall x\\
-	       &\iff	f(x^o) + f^*(y) \leq f(x) -\langle x^o,y\rangle 
-		+ \langle x,y\rangle + \sup_x\{\langle x,y\rangle - f(x)\}
-		+\epsilon \qquad\forall x\\
-		&\iff f(x^o)+f^*(y) \leq \langle x,y\rangle + \epsilon 
-		\qquad \forall x
-	\end{align*}
+		f(x) \geq f(x^o) + \inp{y}{x-x^o} - \epsilon
+		\qquad x\in\mathbb R^n \\
+		&\iff \epsilon + \inp{y}{x^o} \geq f(x^o) 
+		+\underbrace{\sup_x \{\inp{x}{y} - f(x)\}}_{f^*(y)}
+		&\iff \epsilon + \inp{y}{x^o} \geq f(x^o) + f^*(y)
+\end{align*}
 
 \end{proof}

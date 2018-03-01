@@ -4,10 +4,16 @@
    \citeauthor{#2} (\citeyear[#1]{#2})
 }
 \newcommand{\argmin}{\mathrm{argmin}}
-
+%
+\title{DC programming}
+\author{Frédéric Boileau}
+\date{}
 \addbibresource{dcproject.bib} 
-\begin{document}
 \pagestyle{fancy}	
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
 
 \section{Introduction}
 \input{introduction.tex}
@@ -17,9 +23,14 @@
 \clearpage
 \section{Duality and Optimality}
 \input{dualityAndOptimality.tex}
+\section{DCA}
+\input{dca.tex}
 \clearpage
+
+%
+
+
 \appendix
-	
 \clearpage
 \printbibliography
 \clearpage
@@ -74,3 +85,4 @@ suggest the relevance of investigating those programs.
 
 
 \end{document}
+

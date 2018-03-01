@@ -7,7 +7,7 @@
 \usepackage{paracol}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[bookmarks=true]{hyperref}
+\usepackage[bookmarks=true,hyperfootnotes=false]{hyperref}
 \usepackage{bookmark}
 \usepackage{pdfpages}
 %\includepdf[pages={1}]{myfile.pdf}
@@ -31,7 +31,7 @@
 \usepackage{lastpage}
 \pagestyle{fancy}
 \fancyfoot{}
-\fancyfoot[R]{\thepage\ of \pageref{LastPage}}
+\fancyfoot[R]{\thepage\ of \pageref*{LastPage}}
 
 \usepackage{mathtools,xparse}
 \usepackage{amsmath}
@@ -76,9 +76,7 @@ frametitlerulewidth=2pt}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
 
-
-
-\sisetup{output-decimal-marker = {,}}
+%\sisetup{output-decimal-marker = {,}}
 \newcommand*{\ft}[1]{_\mathrm{#1}} 
 \newcommand*{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand*{\tran}{^{\mkern-1.5mu\mathsf{T}}}%transpose of matrix
