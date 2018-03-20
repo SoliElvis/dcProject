@@ -1,0 +1,44 @@
+\input{premath.tex}
+\begin{document}
+\section*{Fairness and efficiency in ressource allocation}
+The setting is an optimization problem where we have some
+ressources, denoted $i\in R$ and some agents, denoted $j\in J$.
+The set of possible allocations $X$ lives in $\mathbb R^{m\times n}$.
+Each agent $j$ derives some utility from acquiring some ressource, 
+independently of what the others receive.
+Say \begin{equation} U_j: \mathbb R^{m} \longrightarrow \mathbb R
+\qquad (x_{j1},\ldots,x_{jm})\mapsto u_j\end{equation}
+Most classical treatments of ressource allocation in economics focus on
+efficiency, that is maximizing utility with little regard to "fairness"
+considerations however in some fields the latter is critical.  For example
+consider bandwith allocation to different links in a network where each
+customer's service depend on different links. Maximizing overall bandwith
+might result in some user being completely cutoff which is clearly
+unacceptable. Different metrics of fairness have been proposed such as the
+Gini and Atkinson indices and there is an associated set of
+of properties and a well established axiomatic treatment of notions
+of fairness in the litterature.
+Moreover there is a tradeoff to be made between fairness and efficiency.
+The overall objective function that can model both and prescribe
+how one should dominate over the other is called a social welfare functionn.
+
+I'd like to investigate the properties of the problem of optimizing a social
+welfare function given a set of constraints and utility functions. More
+specifically how the type of utility function and the similarity between them
+for different individuals affects the structure of the problem under
+classical considerations : convexity and smoothness. Moreover how 
+do different choices of social welfare functions affect efficiency and 
+fairness.
+
+This is a setting extracted from a case a friend of mine was confronted with 
+in the context of his financial consulting work.
+When shareholders give some intentions to sell some of their stocks and
+there is a maximal number of shares to sell, how does one distribute selling
+options across the population in the fairest way. Increased complexity
+is injected by the fact that there are different types of shares (e.g.
+premium, normal) and agents hold those in different proportions.
+
+Finally in computer heterogeneous  ressource allocation such as cloud computing,
+the constraint and utility functions can be dynamic, parametrized by some 
+$t\in \mathbb R_+$.
+\end{document}
