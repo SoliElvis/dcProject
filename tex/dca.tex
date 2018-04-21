@@ -105,32 +105,29 @@ We first present a proof of the first property as the following theorem:
       \leq f^\dagger(\ys) - \frac{\lambda_{g^*} + \lambda_{h^*}}{2}\norm{\Delta \ys}^2
   \end{align}
 \begin{proof}
-We drop sequence notation. Assuming we are at step $\nu$ 
-we simply write $x$ and $y$ for $\xs$ and $\ys$ 
-and $x^+$, $y^+$ for $\xss$ and $\yss$
+    Let,  $\ys \in\partial h(\xs)$, then we know from lemma that :
 \begin{align}
-y\in\partial h(x)\qquad
-  \nonumber \Rightarrow \qquad& h(x^+) \geq h(x) - \inp{y}{x-x^+} + \frac{\lambda_h}{2}\norm{\Delta x}^2\\
-  \qquad \Rightarrow \qquad & (g-h)(x^+) \leq [g(x^+) - [h(x)-\inp{y}{x-x^+}]] - \frac{\lambda_h}{2}\norm{\Delta x}^2
+  \nonumber  \qquad& h(\xss) \geq h(\xs) - \inp{\ys}{\xs-\xss} + \frac{\lambda_h}{2}\norm{\Delta \xs}^2\\
+  \qquad \Rightarrow \qquad & (g-h)(\xss) \leq [g(\xss) - [h(\xs)-\inp{\ys}{x-\xss}]] - \frac{\lambda_h}{2}\norm{\Delta \xs}^2
   \label{descent:1}\\
-  x^+\in\partial g^*(y) \qquad
-  \nonumber \Rightarrow \qquad& g(x) \geq g(x^+) - \inp{y}{x^+-x} + \frac{\lambda_g}{2}\\
-  \qquad \Rightarrow \qquad& (g-h)(x) \geq [g(x^+) - [h(x)-\inp{y}{x-x^+}]]+\frac{\lambda_g}{2}\norm{\Delta x}^2
+  \xss\in\partial g^*(\ys) \qquad
+  \nonumber \Rightarrow \qquad& g(\xs) \geq g(\xss) - \inp{\ys}{\xss-\xs} + \frac{\lambda_g}{2}\\
+  \qquad \Rightarrow \qquad& (g-h)(\xs) \geq [g(\xss) - [h(\xs)-\inp{\ys}{\xs-\xss}]]+\frac{\lambda_g}{2}\norm{\Delta \xs}^2
   \label{descent:2}
 \end{align}
 Combining \eqref{descent:1} and \eqref{descent:2} we get 
 \begin{equation}
-  (g-h)(\xss) \leq [g(x^+) - [h(x)-\inp{y}{x-x^+}]]-\frac{\lambda_h}{2}\norm{\Delta \xs}^2
+  (g-h)(\xss) \leq [g(\xss) - [h(x)-\inp{y}{x-\xss}]]-\frac{\lambda_h}{2}\norm{\Delta \xs}^2
   \leq (g-h)(\xs) - \frac{\lambda_g + \lambda_h}{2}\norm{\Delta \xs}^2 \label{almostclaim}
 \end{equation}
 Now note that since $g,h\in \Gamma_o$ by assumption
 \begin{equation}
   y\in\partial h(x) \iff \inp{x}{y}=h(x)+h^*(y) \qquad \text{and} \qquad 
-  x^+\in\partial g^*(y) \iff \inp{x^+}{y}=g(x^+)+g^*(y)
+  \xss\in\partial g^*(y) \iff \inp{\xss}{y}=g(\xss)+g^*(y)
 \end{equation}
 Combining the above we get that 
 \begin{equation}
-  g(x^+)-[h(x)-\inp{y}{x-x^+}]=(h^*-g^*)(y)
+  g(\xss)-[h(x)-\inp{y}{x-\xss}]=(h^*-g^*)(y)
 \end{equation}
 Substituting the preceding expression into \eqref{almostclaim} we get the first inequality 
 of the claim. The second one is obtained in exactly the same way by symmetry.

@@ -63,7 +63,6 @@ Where the equivalence comes from the fact that the reverse inequality always
 holds by definition of $\liminf$
 \end{definition}
 %
-\clearpage
 \begin{definition}
 Recalling the definition of proper convex functions; when $f\in\Gamma$ and is
 lsc we say that $f\in \Gamma_0$ which is set the of all such functions.
@@ -85,8 +84,27 @@ formally:
 		f(x) \geq f(\bar x) +\langle g,x-\bar x\rangle \quad 
 		\forall x\in\mathbb R^n 
 	\end{equation*}
-Moreover the set of all such subgradients of $f$ at $\bar x$ is callled the subdifferential
-of $f$ at $\bar x$ and we denote it as $\partial f(\bar x)$.
+	Moreover the set of all such subgradients of $f$ at $\bar x$ is callled
+	the \emph{subdifferential} of $f$ at $\bar x$ and we denote it as
+	$\partial f(\bar x)$.
+\end{definition}
+%
+The  \emph{$\epsilon$-subgradient} of a function is a generalization 
+of the subgradient and  has been mostly developped by J.B. Hiriart-Urruty
+in the second of his two volumes on convex analysis
+\autocite[92]{hiriart1993convex} 
+\begin{definition} 
+	Given $x\in\ddom f$ the vector $s\in \mathbb R$ is called
+	an $\epsilon-subgradient$ of $f$ at $x$, written $s\in
+	\partial_\epsilon f(x)$ when the following holds
+	\begin{equation*}
+		f(y) \geq f(x) + \langle s,y-x\rangle -\epsilon 
+		\quad \forall \ y \in \mathbb R^n \quad
+	\end{equation*}
+The set of all $\epsilon$-subgradients of a function at some point
+$x\in\mathbb R^n$ is called the $\epsilon$-subdifferential of $f$ at $x$.
+Moreover it is clear from the definition that
+$\partial f(x) = \bigcap_{\epsilon>0}\partial_{\epsilon}f(x)$
 \end{definition}
 %
 \begin{definition}
@@ -106,42 +124,7 @@ and variational case.
 \mathbb R^n\end{equation*}
 This relationship is known as the \emph{Fenchel-Young Inequality}
 
-\begin{lemma}\label{fenchelDualLemma}
-	Let $f\in \Gamma$, then $y\in \partial f(x) \iff 
-	f(x) + f^*(y) = \langle x,y \rangle $
-\end{lemma}
-\begin{proof}
-Since we already have the Fenchel-Young inequality we only need the reverse:
-\begin{align*}
-	y \in \partial f(x) \overset{\mathrm{def}}{\iff}&
-	f(z)\geq f(x) +\langle y,z-x\rangle 
-	\qquad \forall \, z\in\mathbb R^n\\
-	\iff& f(x) + \sup_z\{\langle
-	y,z\rangle -f(z)\}
-	\leq \langle x,y \rangle \\
-	\iff& f(x)+ f^*(y) \leq \langle x,y\rangle
-\end{align*}
-\end{proof}
-\newpage
-The  \emph{$\epsilon$-subdifferential} of a function.  is a tool which has been
-mostly developped by J.B. Hiriart-Urruty in the second of his two volumes on
-convex analysis \autocite[92]{hiriart1993convex} 
-\begin{definition} 
-	Given $x\in\ddom f$ the vector $s\in \mathbb R$ is called
-	an $\epsilon-subgradient$ of $f$ at $x$, written $s\in
-	\partial_\epsilon f(x)$ when the following holds
-	\begin{equation*}
-		f(y) \geq f(x) + \langle s,y-x\rangle -\epsilon 
-		\quad \forall \ y \in \mathbb R^n \quad
-	\end{equation*}
-The set of all $\epsilon$-subgradients of a function at some point
-$x\in\mathbb R^n$ is called the $\epsilon$-subdifferential of $f$ at $x$.
-Moreover it is clear from the definition that
-$\partial f(x) = \bigcap_{\epsilon>0}\partial_{\epsilon}f(x)$
-\end{definition}
 
-We have an equivalent to the Fenchel-Young inequality for the $\epsilon-$
-subdifferentials. We present it as a lemma here:
 \begin{lemma}
 	Let $f\in\Gamma$ and $x^o \in\ddom f$ then we have that
 	$y \in\partial_\epsilon f(x^o)$ if and only if 
@@ -157,5 +140,84 @@ subdifferentials. We present it as a lemma here:
 		+\underbrace{\sup_x \{\inp{x}{y} - f(x)\}}_{f^*(y)}
 		&\iff \epsilon + \inp{y}{x^o} \geq f(x^o) + f^*(y)
 \end{align*}
-
 \end{proof}
+\begin{lemma}\label{fenchelDualLemma}
+	Let $f\in \Gamma$, then $y\in \partial f(x) \iff 
+	f(x) + f^*(y) = \langle x,y \rangle $
+\end{lemma}
+\begin{proof}
+    Since we already have that $f(x)+f^*(y)\geq\langle x,y\rangle \quad \forall\ x,y\in\mathbb R^n$ (Fenchel-Young)
+    we only need the reverser inequality.\\
+Let $y \in \partial f(x)$ 
+\begin{align*}
+    y \in \partial f(x) &\iff y \in \bigcap_{\epsilon>0}\partial_{\epsilon}f(x)\\
+    \text{(By the preceding lemma)} \qquad 
+    &\iff f(x) + f^*(y) \leq \inp{x}{y} + \epsilon \qquad \forall \ \epsilon > 0 \\
+    &\iff f(x) + f^*(y) \leq \inp{x}{y} 
+\end{align*}
+\end{proof}
+\begin{lemma}\label{lemma:neighToGlobal}
+  Let $f$ be a convex function. Then provided that the following
+  holds:
+  \begin{equation}
+    f(x) \geq f(\bar x) + \inp{g}{x-\bar x} 
+  \end{equation}
+  for all $x$ in some some neighborhood of $\bar x$ then it actually
+  hold for all $x \in \mathbb R^n$ and $g$ is thus a subgradient of
+  f at $\bar x$
+  \begin{proof}
+    Let $N(\bar x)$ designate the neighborhood of $\bar x$ for which
+    the inequality holds. Let $\lambda >0$ be small enough 
+    so that $(\lambda x+ (1-\lambda)\bar x) \in N(\bar x)$
+    By convexity we have :
+    \begin{align}
+%
+      \lambda f(x) + (1-\lambda)f(\bar x) &\geq
+      f(\lambda x + (1-\lambda)\bar x) \qquad \forall \ x \in \mathbb R^n  \\
+      &\geq f(\bar x) + \inp{g}{[\lambda x + (1-\lambda)\bar x)] - \bar x} 
+      \qquad \forall \ x \in \mathbb R^n 
+%
+    \end{align}
+  Letting $\lambda$ go to zero gives us the desired inequality.
+  \end{proof}
+\end{lemma}
+\clearpage
+
+\begin{definition}
+        A convex function is said to be  strongly convex with modulus
+	$\mu>0$ if 
+        \begin{equation}
+          f(x) - \frac{\mu}{2}\norm{x}^2
+        \end{equation}
+        defines a convex function.\\
+\end{definition}
+
+\begin{lemma}
+    If a function $f$ is strongly convex with modulus $\mu>0$  then 
+  $y\in \partial f(\bar x)$ if and only if:
+  \begin{equation}
+    f(\bar x) \leq f(x) + \inp{y}{x-\bar x} - \frac{\mu}{2}\norm{x-\bar x}^2
+  \end{equation}
+  \begin{proof} 
+      Let $y \in \partial f(\bar x)$
+      Let $f$ be strongly convex with modulus $\mu>0$, i.e. $g(x) = f(x) -
+      \frac{\mu}{2}\norm{x}^2$ defines a convex function. Then by definition of convexity 
+      we have :
+      \begin{align}
+	  f(\lambda x + (1-\lambda)y) &\leq \lambda f(x) + (1-\lambda)f(y) 
+	  + \frac{\sigma}{2}(\norm{\lambda x + (1-\lambda y)}^2 - \norm{x}^2 -
+	  (1-\lambda)\norm{y}^2)\\
+%
+	  &\leq \lambda f(x) + (1-\lambda)f(y) -
+	  \frac{\sigma}{2}\lambda(1-\lambda)\norm{x-y}^2 
+      \end{align}
+\end{proof}
+\end{lemma}
+
+
+
+
+
+
+
+
